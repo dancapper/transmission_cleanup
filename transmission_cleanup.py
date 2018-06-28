@@ -67,9 +67,9 @@ for torrent in torrents:
     torrentID = getattr(torrent,"id")
     secondsSeeding = getattr(torrent,"secondsSeeding")
     name = getattr(torrent,"name")
-    print("Torrent id: [{0}] [{2}] Seeding for: [{1}] seconds".format(torrentID,secondsSeeding,name))
+    print("Torrent id: [{0}] [{2}] Seeding for: [{1}] seconds".format(torrentID, secondsSeeding, name.encode('utf-8')))
     if secondsSeeding > secondsSeedingMax:
-        removeString = "Removing torrent {1} [{0}] has been seeding for {2} > {3}".format(torrentID,name, secondsSeeding, secondsSeedingMax)
+        removeString = "Removing torrent {1} [{0}] has been seeding for {2} > {3}".format(torrentID, name.encode('utf-8'), secondsSeeding, secondsSeedingMax)
         print(removeString)
         syslog(removeString)
         tc.remove_torrent([torrentID], delete_data=True)
